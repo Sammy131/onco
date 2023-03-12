@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/screens/bottom_navbar.dart';
+//import 'package:flutter_complete_guide/screens/bottom_navbar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'dialog.dart';
 import 'signup_screen.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -205,8 +206,8 @@ class _SignInScreenState extends State<SignInScreen> {
             .signInWithEmailAndPassword(email: email, password: password)
             .then((uid) => {
                   Fluttertoast.showToast(msg: "Login Successful"),
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => MyBottomNav())),
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => PostFrameCallbackSample())),
                 });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {

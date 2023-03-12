@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
+import 'package:flutter_complete_guide/screens/logout.dart';
+//import 'home_screen.dart';
 import 'gridinfo.dart';
 
 class SideNavBar extends StatelessWidget {
@@ -31,40 +32,92 @@ class SideNavBar extends StatelessWidget {
                 ),
             Container(
               padding: padding,
+              /*decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                color: Colors.black,
+                width: 5.0,
+              ))),*/
               child: Column(
                 children: [
-                  const SizedBox(height: 12),
+                  //const SizedBox(height: 2),
                   buildSearchField(),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 3),
                   buildMenuItem(
                     text: 'Organ System',
-                    icon: ImageIcon(AssetImage('assets/organsystem.jpg')),
+                    icon: ImageIcon(
+                      AssetImage('assets/organsystem.jpg'),
+                      color: Colors.black,
+                    ),
                     onClicked: () => selectedItem(context, 0),
                   ),
-                  const SizedBox(height: 16),
+                  Divider(
+                    color: Colors.black,
+                    thickness: 2,
+                  ),
+                  const SizedBox(height: 1),
                   buildMenuItem(
                     text: 'Surgical Prophylaxis',
-                    icon: ImageIcon(AssetImage('assets/surprop.png')),
+                    icon: ImageIcon(
+                      AssetImage('assets/surprop.png'),
+                      color: Colors.black,
+                    ),
                     onClicked: () => selectedItem(context, 1),
                   ),
-                  const SizedBox(height: 16),
+                  Divider(
+                    color: Colors.black,
+                    thickness: 2,
+                  ),
+                  const SizedBox(height: 1),
                   buildMenuItem(
                     text: 'Post Solid Organ Transplant',
-                    icon: ImageIcon(AssetImage('assets/transplant.png')),
+                    icon: ImageIcon(
+                      AssetImage('assets/transplant.png'),
+                      color: Colors.black,
+                    ),
                     onClicked: () => selectedItem(context, 2),
                   ),
-                  const SizedBox(height: 16),
+                  Divider(
+                    color: Colors.black,
+                    thickness: 2,
+                  ),
+                  const SizedBox(height: 1),
                   buildMenuItem(
                     text: 'Multi-Drug Resistant Bacteria',
-                    icon: ImageIcon(AssetImage('assets/drugres.png')),
+                    icon: ImageIcon(
+                      AssetImage('assets/drugres.png'),
+                      color: Colors.black,
+                    ),
                     onClicked: () => selectedItem(context, 3),
                   ),
-                  const SizedBox(height: 24),
-                  Divider(color: Color.fromARGB(255, 0, 0, 0)),
-                  const SizedBox(height: 24),
+                  Divider(
+                    color: Colors.black,
+                    thickness: 2,
+                  ),
+                  //const SizedBox(height: 16),
+                  //Divider(color: Color.fromARGB(255, 0, 0, 0)),
+                  const SizedBox(height: 1),
                   buildMenuItem(
                     text: 'Additional Information',
-                    icon: ImageIcon(AssetImage('assets/info.png')),
+                    icon: ImageIcon(
+                      AssetImage('assets/info.png'),
+                      color: Colors.black,
+                    ),
+                    onClicked: () => selectedItem(context, 4),
+                  ),
+                  Divider(
+                    color: Colors.black,
+                    thickness: 2,
+                  ),
+                  //const SizedBox(height: 24),
+                  //Divider(color: Color.fromARGB(255, 0, 0, 0)),
+                  const SizedBox(height: 0.2),
+                  buildMenuItem(
+                    text: 'Account',
+                    icon: ImageIcon(
+                      AssetImage('assets/account.png'),
+                      color: Colors.black,
+                    ),
                     onClicked: () => selectedItem(context, 4),
                   ),
                   // const SizedBox(height: 16),
@@ -112,7 +165,7 @@ class SideNavBar extends StatelessWidget {
                   ),
                 ],
               ),
-              Spacer(),
+              //Spacer(),
               // CircleAvatar(
               //   radius: 24,
               //   backgroundColor: Color.fromRGBO(118, 133, 184, 1),
@@ -178,6 +231,21 @@ class SideNavBar extends StatelessWidget {
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => info(),
+        ));
+        break;
+      case 2:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => info(),
+        ));
+        break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => info(),
+        ));
+        break;
+      case 4:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => logout(),
         ));
         break;
     }

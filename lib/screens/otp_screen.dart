@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_complete_guide/screens/bottom_navbar.dart';
+import 'package:flutter_complete_guide/screens/dialog.dart';
 //import '/provider/auth_provider.dart';
 //import '/screens/home_screen.dart';
 //import 'package:phoneauth_firebase/screens/user_information_screen.dart';
@@ -323,8 +324,8 @@ class _otpScreenState extends State<otpScreen> {
       });
 
       if (AuthCredential.user != null) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MyBottomNav()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PostFrameCallbackSample()));
       }
     } on FirebaseAuthException catch (e) {
       setState(() {

@@ -9,10 +9,20 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
+class FirebaseApp extends StatelessWidget {
+  //const FirebaseApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter App',
       theme: ThemeData(
         primarySwatch: Colors.orange,

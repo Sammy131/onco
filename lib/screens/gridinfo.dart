@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'bottom_navbar.dart';
 
 class info extends StatelessWidget {
   const info({super.key});
@@ -9,6 +10,15 @@ class info extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Antibiotica"),
         centerTitle: true,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => MyBottomNav())),
+            );
+          },
+        ),
         backgroundColor: Colors.deepOrange,
       ),
       body: Center(

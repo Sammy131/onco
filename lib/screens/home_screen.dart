@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // ),
           centerTitle: true,
           title: Text(
-            "Anitibiotica",
+            "Antibiotica",
             style: TextStyle(
                 //color: Color.fromARGB(255, 7, 20, 91),
                 color: Colors.white,
@@ -152,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: new EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepOrangeAccent.shade100,
+                      color: Colors.deepOrange.shade100,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.8),
@@ -209,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: new EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepOrangeAccent.shade100,
+                      color: Colors.deepOrange.shade100,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.8),
@@ -268,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: new EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepOrangeAccent.shade100,
+                      color: Colors.deepOrange.shade100,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.8),
@@ -325,7 +325,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: new EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepOrangeAccent.shade100,
+                      color: Colors.deepOrange.shade100,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.8),
@@ -382,7 +382,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: new EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepOrangeAccent.shade100,
+                      color: Colors.deepOrange.shade100,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.8),
@@ -439,7 +439,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: new EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepOrangeAccent.shade100,
+                      color: Colors.deepOrange.shade100,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.8),
