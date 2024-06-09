@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "999452460635",
+    "project_id": "scholameter",
+    "storage_bucket": "scholameter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999452460635:android:b1776ff4007089167a217e",
+        "android_client_info": {
+          "package_name": "com.example.my_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999452460635-68eis89ecrt0u1sp0b4odlpp3dhja520.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvqdjMtg2W3osW5BM73GvO-azy6V773HQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999452460635-68eis89ecrt0u1sp0b4odlpp3dhja520.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

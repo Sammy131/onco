@@ -1,8 +1,18 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_complete_guide/forms/studentinfo.dart';
+import 'package:flutter_complete_guide/forms/teacherinfo.dart';
+import 'package:flutter_complete_guide/screens/getstudentinfo.dart';
 import '/model/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'side_nav.dart';
+import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
+import 'pdf.dart';
+import 'bmi.dart';
+
+//import 'side_nav.dart';
 import 'gridinfo.dart';
 
 //import 'signin_screen.dart';
@@ -15,21 +25,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  User? user = FirebaseAuth.instance.currentUser;
-  UserModel loggedInUser = UserModel();
-
-  @override
-  void initState() {
-    super.initState();
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(user!.uid)
-        .get()
-        .then((value) {
-      this.loggedInUser = UserModel.fromMap(value.data());
-      setState(() {});
-    });
-  }
+  //User? user = FirebaseAuth.instance.currentUser;
+  //serModel loggedInUser = UserModel();
 
   /*@override
   Widget build(BuildContext context) {
@@ -100,8 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideNavBar(),
+      //drawer: SideNavBar(),
       appBar: AppBar(
+
           // leading: IconButton(
           //   icon: Icon(Icons.menu),
           //   color: Colors.white,
@@ -118,54 +116,62 @@ class _HomeScreenState extends State<HomeScreen> {
           // ),
           centerTitle: true,
           title: Text(
-            "Antibiotica",
+            "ONCO DIET APP",
+            textAlign: TextAlign.center,
             style: TextStyle(
                 //color: Color.fromARGB(255, 7, 20, 91),
-                color: Colors.white,
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
-                fontSize: 25),
+                fontSize: 20),
           ),
 
           //backgroundColor: Color.fromARGB(255, 229, 76, 4),
-          backgroundColor: Colors.deepOrange,
+          backgroundColor: Color.fromARGB(255, 33, 243, 240),
           bottom: PreferredSize(
             child: Container(
-              color: Colors.black,
+              color: Colors.white,
               height: 4.0,
             ),
-            preferredSize: Size.fromHeight(4.0),
+            preferredSize: Size.fromHeight(20.0),
           )),
+
       //backgroundColor: Color.fromARGB(248, 8, 38, 34),
       backgroundColor: Colors.white,
-      body: Container(
-        child: Padding(
-          padding: EdgeInsets.only(left: 5, right: 5, bottom: 5),
-          //const EdgeInsets.all(3.0),
-          child: GridView(
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => info()));
-                },
-                child: Container(
-                  margin: new EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepOrange.shade100,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.8),
-                          spreadRadius: 5,
-                          blurRadius: 2,
-                          offset: Offset(0, 5),
-                        )
-                      ]),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      /*Tab(
+
+      body: SingleChildScrollView(
+        child: Container(
+          child: Padding(
+            padding: EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 80),
+            //const EdgeInsets.all(3.0),
+            child: GridView(
+              shrinkWrap: true, // Added this line
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                /*InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => StudentInfoForm()));
+                  },
+                  child: Container(
+                    margin: new EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.8),
+                            spreadRadius: 5,
+                            blurRadius: 2,
+                            offset: Offset(0, 5),
+                          )
+                        ]),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        /*Tab(
                         icon: new Image.asset(
                           'assets/images/subj.png',
                           //height: 400,
@@ -174,114 +180,144 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),*/
 
-                      //Admission Process
-                      Container(
-                        height: 85,
-                        width: 85,
-                        padding: const EdgeInsets.all(3.0),
-                        child: Image.asset(
-                          'assets/syn.png',
-                          fit: BoxFit.cover,
+                        //Admission Process
+                        Container(
+                          height: 85,
+                          width: 85,
+                          padding: const EdgeInsets.all(3.0),
+                          child: Image.asset(
+                            'assets/information.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Syndromes",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              //EXAM
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => info()));
-                },
-                child: Container(
-                  margin: new EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepOrange.shade100,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.8),
-                          spreadRadius: 5,
-                          blurRadius: 3,
-                          offset: Offset(0, 5),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Enter Student Information",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold),
                         )
-                      ]),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      /*Icon(
-                        Icons.book,
-                        size: 50,
-                        color: Colors.white,
-                      ),
-                      Tab(
-                        icon: new Image.asset(
-                          'assets/images/exam.png',
-                          height: 250,
-                          width: 250,
-                        ),
-                      ),*/
-                      Container(
-                        height: 85,
-                        width: 85,
-                        padding: const EdgeInsets.all(3.0),
-                        child: Image.asset(
-                          'assets/path.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Pathogens",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      )
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ),
+                ),*/
+                //EXAM
 
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => info()));
-                },
-                child: Container(
-                  margin: new EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepOrange.shade100,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.8),
-                          spreadRadius: 5,
-                          blurRadius: 3,
-                          offset: Offset(0, 5),
+                /*InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => getstudentinfo()));
+                  },
+                  child: Container(
+                    margin: new EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.8),
+                            spreadRadius: 5,
+                            blurRadius: 3,
+                            offset: Offset(0, 5),
+                          )
+                        ]),*/
+
+                InkWell(
+                  onTap: () async {
+                    final file = await loadPdfFromAssets('assets/sample.pdf');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            PdfViewerScreen(pdfPath: file.path),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    margin: new EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.8),
+                            spreadRadius: 5,
+                            blurRadius: 3,
+                            offset: Offset(0, 5),
+                          )
+                        ]),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        /*Icon(
+                          Icons.book,
+                          size: 50,
+                          color: Colors.white,
+                        ),
+                        Tab(
+                          icon: new Image.asset(
+                            'assets/diet.png',
+                            height: 250,
+                            width: 250,
+                          ),
+                        ),*/
+                        Container(
+                          height: 85,
+                          width: 85,
+                          padding: const EdgeInsets.all(3.0),
+                          child: Image.asset(
+                            'assets/diet.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Day wise dietary details",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold),
                         )
-                      ]),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      /*Icon(
+                      ],
+                    ),
+                  ),
+                ),
+
+                /*InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TeacherInfoForm()));
+                  },
+                  child: Container(
+                    margin: new EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.8),
+                            spreadRadius: 5,
+                            blurRadius: 3,
+                            offset: Offset(0, 5),
+                          )
+                        ]),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        /*Icon(
                         Icons.grade,
                         size: 50,
                         color: Colors.white,
@@ -293,52 +329,53 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 250,
                         ),
                       ),*/
-                      Container(
-                        height: 85,
-                        width: 85,
-                        padding: const EdgeInsets.all(3.0),
-                        child: Image.asset(
-                          'assets/drug.png',
-                          fit: BoxFit.cover,
+                        Container(
+                          height: 85,
+                          width: 85,
+                          padding: const EdgeInsets.all(3.0),
+                          child: Image.asset(
+                            'assets/teacher.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Drugs",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => info()));
-                },
-                child: Container(
-                  margin: new EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepOrange.shade100,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.8),
-                          spreadRadius: 5,
-                          blurRadius: 3,
-                          offset: Offset(0, 5),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Enter Teacher Information",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold),
                         )
-                      ]),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      /*Icon(
+                      ],
+                    ),
+                  ),
+                ),*/
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Bmi()));
+                  },
+                  child: Container(
+                    margin: new EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.8),
+                            spreadRadius: 5,
+                            blurRadius: 3,
+                            offset: Offset(0, 5),
+                          )
+                        ]),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        /*Icon(
                         Icons.money,
                         size: 50,
                         color: Colors.white,
@@ -350,39 +387,40 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 250,
                         ),
                       ),*/
-                      Container(
-                        height: 85,
-                        width: 85,
-                        padding: const EdgeInsets.all(3.0),
-                        child: Image.asset(
-                          'assets/pre.png',
-                          fit: BoxFit.cover,
+                        Container(
+                          height: 85,
+                          width: 85,
+                          padding: const EdgeInsets.all(3.0),
+                          child: Image.asset(
+                            'assets/bmi.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Prevention",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      )
-                    ],
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "BMI Calculator",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => info()));
-                },
-                child: Container(
+                /* InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => info()));
+                  },*/
+                /*Container(
                   margin: new EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepOrange.shade100,
+                      color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.8),
@@ -412,7 +450,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 85,
                         padding: const EdgeInsets.all(3.0),
                         child: Image.asset(
-                          'assets/hiv.png',
+                          'assets/serial-number.png',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -420,26 +458,28 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 5,
                       ),
                       Text(
-                        "HIV",
+                        "Add Student Attendance",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 20,
+                            fontSize: 12,
                             fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => info()));
-                },
-                child: Container(
+                //),*/
+                /*InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => info()));
+                  },*/
+                Container(
+                  alignment: Alignment.center,
                   margin: new EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepOrange.shade100,
+                      color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.8),
@@ -467,9 +507,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       Container(
                         height: 85,
                         width: 85,
+                        alignment: Alignment.center,
                         padding: const EdgeInsets.all(3.0),
                         child: Image.asset(
-                          'assets/tab.png',
+                          'assets/yoga.png',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -477,26 +518,269 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 5,
                       ),
                       Text(
-                        "Tablets & Tools",
+                        "Exercise and Yoga",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 20,
+                            fontSize: 12,
                             fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
                 ),
+                //),
+                /*InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => info()));
+                  },
+                  child: Container(
+                    margin: new EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.8),
+                            spreadRadius: 5,
+                            blurRadius: 3,
+                            offset: Offset(0, 5),
+                          )
+                        ]),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        /*Icon(
+                        Icons.grade,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      Tab(
+                        icon: new Image.asset(
+                          'assets/images/result.png',
+                          height: 250,
+                          width: 250,
+                        ),
+                      ),*/
+                        Container(
+                          height: 85,
+                          width: 85,
+                          padding: const EdgeInsets.all(3.0),
+                          child: Image.asset(
+                            'assets/exam.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Enter Exam Grade",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => info()));
+                  },
+                  child: Container(
+                    margin: new EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.8),
+                            spreadRadius: 5,
+                            blurRadius: 3,
+                            offset: Offset(0, 5),
+                          )
+                        ]),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        /*Icon(
+                        Icons.grade,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      Tab(
+                        icon: new Image.asset(
+                          'assets/images/result.png',
+                          height: 250,
+                          width: 250,
+                        ),
+                      ),*/
+                        Container(
+                          height: 85,
+                          width: 85,
+                          padding: const EdgeInsets.all(3.0),
+                          child: Image.asset(
+                            'assets/score.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Exam Grade List",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                ),*/
+              ],
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 2,
+                mainAxisSpacing: 2,
+                //childAspectRatio: .60,
               ),
-            ],
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 2,
-              mainAxisSpacing: 2,
-              //childAspectRatio: .60,
             ),
           ),
         ),
       ),
     );
   }
+
+  Future<File> loadPdfFromAssets(String assetPath) async {
+    final byteData = await rootBundle.load(assetPath);
+    final file = File('${(await getTemporaryDirectory()).path}/sample.pdf');
+    await file.writeAsBytes(byteData.buffer.asUint8List());
+    return file;
+  }
 }
+
+/*import 'package:flutter/material.dart';
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          "ONCO DIET APP",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        backgroundColor: Color.fromARGB(255, 33, 243, 240),
+        bottom: PreferredSize(
+          child: Container(
+            color: Colors.white,
+            height: 4.0,
+          ),
+          preferredSize: Size.fromHeight(20.0),
+        ),
+      ),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Container(
+          child: Padding(
+            padding: EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 80),
+            child: GridView.count(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                buildGridItem(context, 'assets/list.png',
+                    'Student Information List', getstudentinfo),
+                buildGridItem(context, 'assets/business.png',
+                    'Teacher Information List', getstudentinfo),
+                buildGridItem(context, 'assets/tasks.png',
+                    'Student Attendance List', getstudentinfo),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildGridItem(BuildContext context, String imagePath, String title,
+      Widget Function() navigationTarget) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => navigationTarget()),
+        );
+      },
+      child: Container(
+        alignment: Alignment.center,
+        margin: EdgeInsets.all(15),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.8),
+                spreadRadius: 5,
+                blurRadius: 3,
+                offset: Offset(0, 5),
+              )
+            ]),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              height: 85,
+              width: 85,
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(3.0),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget getstudentinfo() {
+    // Placeholder function for navigation target
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Student Info"),
+      ),
+      body: Center(
+        child: Text("Student Info Screen"),
+      ),
+    );
+  }
+}*/
+
+

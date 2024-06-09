@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/forms/coursedesign.dart';
 import 'package:flutter_complete_guide/screens/gridinfo.dart';
+import 'package:flutter_complete_guide/screens/logout.dart';
 //import 'package:flutter_complete_guide/screens/logout.dart';
 import 'home_screen.dart';
 
@@ -21,30 +23,30 @@ class MyBottomNavState extends State<MyBottomNav> {
 
   Widget _myBottomNavBar() {
     return BottomNavigationBar(
-      currentIndex: _currentIndex,
-      backgroundColor: Colors.deepOrange,
-      //fixedColor: Colors.orange,
-      onTap: _onTapItem,
-      type: BottomNavigationBarType.fixed,
-      selectedFontSize: 30,
-      items: [
+        currentIndex: _currentIndex,
+        backgroundColor: Colors.white,
+        //fixedColor: Colors.orange,
+        onTap: _onTapItem,
+        type: BottomNavigationBarType.fixed,
+        selectedFontSize: 30,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.black),
+          /*BottomNavigationBarItem(
+            icon: Icon(Icons.subject),
+            label: 'Course Design',
+            backgroundColor: Colors.black),
         BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.white),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.source),
-            label: 'Reference',
-            backgroundColor: Colors.white),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
-            label: 'Bookmark',
-            backgroundColor: Colors.white),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.note),
-            label: 'Notes',
-            backgroundColor: Colors.white),
-        /*BottomNavigationBarItem(
+            icon: Icon(Icons.details),
+            label: 'Details',
+            backgroundColor: Colors.black),*/
+          BottomNavigationBarItem(
+              icon: Icon(Icons.logout),
+              label: 'Logout',
+              backgroundColor: Colors.black),
+          /*BottomNavigationBarItem(
               icon: Icon(Icons.calculate),
               label: 'Calculator',
               backgroundColor: Colors.orange),
@@ -52,9 +54,9 @@ class MyBottomNavState extends State<MyBottomNav> {
               icon: Icon(Icons.supervised_user_circle),
               label: 'Account',
               backgroundColor: Colors.orange),*/
-      ],
-      selectedLabelStyle: TextStyle(fontSize: 10), fixedColor: Colors.white,
-    );
+        ],
+        selectedLabelStyle: TextStyle(fontSize: 10),
+        fixedColor: Color.fromARGB(255, 33, 243, 240));
   }
 
   @override
@@ -85,12 +87,12 @@ class BottomNavContents extends StatelessWidget {
     switch (index) {
       case 0:
         return HomeScreen();
-      case 1:
-        return info();
+      /*case 1:
+        return RegistrationForm();
       case 2:
-        return info();
-      case 3:
-        return info();
+        return info();*/
+      case 1:
+        return logout();
       /*case 4:
         return info();
       case 5:

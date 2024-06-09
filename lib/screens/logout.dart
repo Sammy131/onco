@@ -13,7 +13,7 @@ class logout extends StatefulWidget {
 
 class _logoutState extends State<logout> {
   User? user = FirebaseAuth.instance.currentUser;
-  UserModel loggedInUser = UserModel();
+  UserModel loggedInUser = UserModel(ageField: '18');
   @override
   void initState() {
     super.initState();
@@ -30,9 +30,12 @@ class _logoutState extends State<logout> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Antibiotica"),
+        title: const Text(
+          "ONCO DIET APP",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: Color.fromARGB(255, 33, 243, 240),
       ),
       body: Center(
         child: Padding(
@@ -41,11 +44,11 @@ class _logoutState extends State<logout> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              SizedBox(
+              /*SizedBox(
                 height: 150,
-                child: Image.asset("assets/logo.png", fit: BoxFit.contain),
-              ),
-              Text(
+                child: Image.asset("assets/logo.jpg", fit: BoxFit.contain),
+              ),*/
+              /*Text(
                 "Account Info",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
@@ -64,7 +67,7 @@ class _logoutState extends State<logout> {
                   )),
               SizedBox(
                 height: 15,
-              ),
+              ),*/
               ActionChip(
                   label: Text("Logout"),
                   onPressed: () {

@@ -21,7 +21,7 @@ class _PostFrameCallbackSampleState extends State<PostFrameCallbackSample> {
           //contentPadding: EdgeInsets.all(15.0),
           contentPadding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
           //titlePadding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-          content: const Text('Hello Dr.XYZ,\nWelcome to Antibiotica!!\n',
+          content: const Text('Hello User,\n\nWelcome to ONCO DIET APP!!\n',
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.black,
@@ -50,7 +50,7 @@ class _PostFrameCallbackSampleState extends State<PostFrameCallbackSample> {
       //body: const Center(
       //  child: Text('Body of the Scaffold'),
       //),
-      backgroundColor: Colors.deepOrange,
+      backgroundColor: Color.fromARGB(255, 33, 243, 240),
     );
   }
 }

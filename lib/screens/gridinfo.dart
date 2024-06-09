@@ -8,7 +8,7 @@ class info extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Antibiotica"),
+        title: const Text("ONCO DIET APP"),
         centerTitle: true,
         leading: Builder(
           builder: (BuildContext context) {
@@ -19,7 +19,7 @@ class info extends StatelessWidget {
             );
           },
         ),
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: Color.fromARGB(255, 33, 243, 240),
       ),
       body: Center(
         child: Padding(
@@ -30,7 +30,7 @@ class info extends StatelessWidget {
             children: <Widget>[
               SizedBox(
                 height: 150,
-                child: Image.asset("assets/icmr.png", fit: BoxFit.contain),
+                child: Image.asset("assets/logo.jpg", fit: BoxFit.contain),
               ),
               Text(
                 "Info....",

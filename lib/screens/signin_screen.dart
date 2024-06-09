@@ -86,7 +86,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
     final loginButton = Material(
         elevation: 5,
-        color: Colors.deepOrange,
+        color: Color.fromARGB(255, 33, 243, 240),
         borderRadius: BorderRadius.circular(30),
         child: MaterialButton(
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
@@ -98,34 +98,34 @@ class _SignInScreenState extends State<SignInScreen> {
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 20,
-                  color: Colors.white,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold)),
         ));
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: Color.fromARGB(255, 33, 243, 240),
         leading: (SizedBox(
           height: 500,
           width: 500,
-          child: Image.asset(
+          /*child: Image.asset(
             'assets/jssstu.png',
             width: 100,
             height: 150,
             fit: BoxFit.fill,
             scale: 0.5,
-          ),
+          ),*/
         )),
         title: const Text(
-          "Antibiotica",
+          "ONCO DIET APP",
           style: TextStyle(
-            color: Color.fromARGB(255, 7, 20, 91),
+            color: Colors.black,
             fontWeight: FontWeight.bold,
-            fontSize: 30,
+            fontSize: 20,
           ),
         ),
         centerTitle: true,
-        actions: [
+        /*actions: [
           SizedBox(
             height: 150,
             width: 150,
@@ -136,7 +136,7 @@ class _SignInScreenState extends State<SignInScreen> {
               onPressed: () => exit(0),
             ),
           ),
-        ],
+        ],*/
       ),
       body: Center(
           child: SingleChildScrollView(
@@ -150,13 +150,13 @@ class _SignInScreenState extends State<SignInScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            SizedBox(
+                            /* SizedBox(
                               height: 100,
-                              width: 200,
+                              width: 300,
                               child: Image.asset(
-                                "assets/icmr.png",
-                                height: 50,
-                                width: 150,
+                                "assets/logo.jpg",
+                                height: 100,
+                                width: 300,
                                 scale: 0.5,
                                 fit: BoxFit.fill,
                               ),
@@ -164,7 +164,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             Text(
                               "Funded by ICMR",
                               style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                            ),*/
                             SizedBox(height: 25),
                             emailField,
                             SizedBox(height: 25),
@@ -187,7 +187,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                     child: Text(
                                       "SignUp",
                                       style: TextStyle(
-                                          color: Colors.deepOrange,
+                                          color:
+                                              Color.fromARGB(255, 33, 243, 240),
                                           fontWeight: FontWeight.bold,
                                           fontSize: 15),
                                     ),
